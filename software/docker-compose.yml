@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  # DB
+  db:
+    image: mariadb/server:10.3
+    container_name: db_container
+    networks:
+      default:
+        aliases:
+          - db_container
+    restart: always
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      - TZ=Europe/Madrid
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASS:-admin}
+      - MYSQL_DATABASE=${DB_NAME:-database}
+      - MYSQL_USER=${DB_USER:-user}
+      - MYSQL_PASSWORD=${DB_PASS:-user}
+    ports:
+      - ${DB_PORT:-3306}:3306
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"

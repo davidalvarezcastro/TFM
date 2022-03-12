@@ -27,7 +27,7 @@ def getimageslayers():
     # se ejecutan los scripts externos
     python_tests_cmd = [
         'python',
-        'src/data/get_images_CNN.py'
+        'src/deep_learning/data/get_images_CNN.py'
     ]
     python_tests_cmd.extend({})
     subprocess.call(' '.join(python_tests_cmd), shell=True)
